@@ -1,3 +1,5 @@
+package db;
+
 import org.litepal.crud.DataSupport;
 
 /**
