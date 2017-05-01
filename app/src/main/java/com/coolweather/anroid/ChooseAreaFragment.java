@@ -19,14 +19,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import db.City;
-import db.County;
-import db.Province;
+import com.coolweather.anroid.db.City;
+import com.coolweather.anroid.db.County;
+import com.coolweather.anroid.db.Province;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
-import util.HttpUtil;
-import util.Utility;
+import com.coolweather.anroid.util.HttpUtil;
+import com.coolweather.anroid.util.Utility;
 
 /**
  * Created by Kiwi7 on 2017/4/27.
@@ -88,7 +88,7 @@ public class ChooseAreaFragment extends Fragment {
     }
 
     private void queryProvinces() {
-        titleText.setText("中");
+        titleText.setText("中国");
         backButton.setVisibility(View.GONE);
         provinceList = DataSupport.findAll(Province.class);
         if (provinceList.size() > 0) {
