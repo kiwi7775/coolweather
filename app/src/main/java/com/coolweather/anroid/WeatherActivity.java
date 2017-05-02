@@ -1,5 +1,6 @@
 package com.coolweather.anroid;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.coolweather.anroid.gson.Forecast;
 import com.coolweather.anroid.gson.Weather;
+import com.coolweather.anroid.service.AutoUpdateService;
 import com.coolweather.anroid.util.HttpUtil;
 import com.coolweather.anroid.util.Utility;
 
@@ -135,6 +137,7 @@ public class WeatherActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this).edit();
                             editor.putString("weather", responseText);
                             editor.apply();
+                            mWeatherId = weather.basic.weatherId;
                             showWeatherInfo(weather);
                         } else {
                             Toast.makeText(WeatherActivity.this, "获取天气信息失败。", Toast.LENGTH_SHORT).show();
@@ -203,5 +206,7 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 }
